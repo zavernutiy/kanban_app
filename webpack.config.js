@@ -8,6 +8,9 @@ var ROOT_PATH = path.resolve(__dirname);
 
 var common = {
     entry: path.resolve(ROOT_PATH, 'app'),
+    resolve: {
+        extenstions: ['', '.js', '.jsx']
+    },
     output: {
         path: path.resolve(ROOT_PATH, 'build'),
         filename: 'bundle.js'
@@ -31,6 +34,15 @@ var common = {
 if(TARGET === 'start' || !TARGET) {
     module.exports = merge(common, {
         devtool: 'eval-source-map',
+        module: {
+            loaders: [
+                {
+                    test: /\.jsx?$/,
+                    lodaers: ['babel'],
+                    include: path.resolve(ROOT_PATH, 'app')
+                }
+            ]
+        },
         devServer: {
             historyApiFallback: true,
             hot: true,
