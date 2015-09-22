@@ -9,7 +9,7 @@ var ROOT_PATH = path.resolve(__dirname);
 var common = {
     entry: path.resolve(ROOT_PATH, 'app'),
     resolve: {
-        extenstions: ['', '.js', '.jsx']
+        extensions: ['', '.js', '.jsx']
     },
     output: {
         path: path.resolve(ROOT_PATH, 'build'),
@@ -38,7 +38,7 @@ if(TARGET === 'start' || !TARGET) {
             loaders: [
                 {
                     test: /\.jsx?$/,
-                    lodaers: ['babel'],
+                    loaders: ['react-hot', 'babel'],
                     include: path.resolve(ROOT_PATH, 'app')
                 }
             ]
@@ -53,5 +53,5 @@ if(TARGET === 'start' || !TARGET) {
         plugins: [
             new webpack.HotModuleReplacementPlugin()
         ]
-    })
+    });
 }
