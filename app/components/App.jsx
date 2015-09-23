@@ -21,12 +21,12 @@ export default class App extends React.Component {
                     task: 'Do laundry'
                 }
             ]
-        }
+        };
 
         this.findNote = this.findNote.bind(this);
         this.addNote = this.addNote.bind(this);
         this.editNote = this.editNote.bind(this);
-        this.deleteNote = this.deleteNote(this);
+        this.deleteNote = this.deleteNote.bind(this);
     }
     render() {
         const notes = this.state.notes;
@@ -55,7 +55,7 @@ export default class App extends React.Component {
         this.setState({
             notes: this.state.notes.concat([{
                 id: uuid.v4(),
-                task: 'New Task'
+                task: 'New task'
             }])
         });
     }
@@ -63,7 +63,7 @@ export default class App extends React.Component {
         let notes = this.state.notes;
         const noteIndex = this.findNote(id);
 
-        if (noteIndex < 0) {
+        if(noteIndex < 0) {
             return;
         }
 
@@ -75,7 +75,7 @@ export default class App extends React.Component {
         const notes = this.state.notes;
         const noteIndex = notes.findIndex((note) => note.id === id);
 
-        if (noteIndex < 0) {
+        if(noteIndex < 0) {
             console.warn('Failed to find note', notes, id);
         }
 
